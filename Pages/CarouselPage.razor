@@ -1,0 +1,34 @@
+﻿@page "/CarouselPage"
+@inject IJSRuntime JS
+
+<h3>CarouselPage</h3>
+
+<button @onclick="DoIt">Do It!</button>
+
+<div id="carousel">
+  <img src="images/1.jpeg" class="cloud9-item" alt="img1"/>
+  <img src="images/2.jpeg" class="cloud9-item" alt="img2"/>
+  <img src="images/3.jpeg" class="cloud9-item" alt="img3"/>
+  <img src="images/4.jpeg" class="cloud9-item" alt="img4"/>
+  <img src="images/5.jpeg" class="cloud9-item" alt="img5"/>
+  <img src="images/6.jpeg" class="cloud9-item" alt="img6"/>
+</div>
+
+<div id="buttons">
+  <button class="left">
+    ←
+  </button>
+  <button class="right">
+    →
+  </button>
+</div>
+
+@code {
+
+  private async Task DoIt()
+  {
+    var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/HopePlease.js");
+    await module.InvokeVoidAsync("init");
+  }
+
+}
